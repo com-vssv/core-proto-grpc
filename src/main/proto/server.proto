@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.vssv.core.server.proto";
+option java_outer_classname = "CoreServerProto";
+
+// The ping service definition for health checks and simple communication.
+service Ping {
+  // Sends a single ping request and receives a response.
+  rpc SayPing(PingRequest) returns (PingResponse) {}
+  // Sends a ping request and receives a stream of responses.
+  rpc StreamPing(PingRequest) returns (stream PingResponse) {}
+}
+
+// The request message for the Ping service.
+message PingRequest {
+}
+
+// The response message for the Ping service containing a status code and a message.
+message PingResponse {
+  // The status code of the response.
+  int32 status = 1;
+  // A descriptive message associated with the response.
+  string message = 2;
+}
