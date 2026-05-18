@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.vssv'
-version = '1.0-20260517-alpha'
+version = '1.0-20260519-alpha'
 
 java {
     toolchain {

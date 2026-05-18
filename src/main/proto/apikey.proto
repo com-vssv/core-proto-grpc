@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+import "apikey/client.proto";
+
+option java_multiple_files = true;
+option java_package = "com.vssv.core.server.proto";
+option java_outer_classname = "ApiKeyProto";
+
+// Service for API key registration and public key distribution using RSA
+service ApiKeyService {
+  // Returns the server's public key for RSA encryption
+  rpc GetPublicKey(GetPublicKeyRequest) returns (GetPublicKeyResponse) {}
+
+  // Registers a client and returns an API key
+  rpc RegisterClient(RegisterClientRequest) returns (RegisterClientResponse) {}
+}
+
+// Request to fetch the server's public key
+message GetPublicKeyRequest {
+}
+
+// Response containing the server's public key
+message GetPublicKeyResponse {
+  // The server's RSA public key, typically in PEM format
+  string public_key = 1;
+}
+
+// Request to register a client
+message RegisterClientRequest {
+  Client client = 1;
+}
+
+// Response containing the newly generated API key
+message RegisterClientResponse {
+  // The API key to be used for subsequent requests
+  bytes encrypted_api_key = 1;
+}
